@@ -16,14 +16,17 @@
     </div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('created-new-article') }}"  class="btn btn-success mt-3 mb-3">Created article</a>    
-                <h5 class="card-header">Рекомендуемые посты</h5>
-                    <div class="card-body p-6 bg-white">
-                        <h5 class="card-title">Особое обращение с заголовком</h5>
-                            <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
+            <a href="{{ route('created-post') }}"  class="btn btn-success mt-3 mb-3">Created article</a> 
+            @foreach ($posts as $post)
+                <h5 class="card-header">{{ $post->name }}</h5>
+                    <div class="card-body p-6 bg-white mb-4">
+                        <h5 class="card-title">post content</h5>
+                            <p class="card-text">{{ $post->text }}</p>
                             <a href="#" class="btn btn-primary">Edit</a>
                             <a href="#" class="btn btn-danger">Delete</a>
                     </div>
+            @endforeach   
+                
         </div>
     </div>
 </x-app-layout>

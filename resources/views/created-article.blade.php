@@ -16,13 +16,35 @@
     </div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <a href="{{ route('created-new-article') }}"  class="btn btn-success mt-3 mb-3">Created article</a>    
-                <h5 class="card-header">Рекомендуемые посты</h5>
+            {{-- <a href="{{ route('created-article') }}"  class="btn btn-success mt-3 mb-3">Created article</a>     --}}
+                <h5 class="card-header">Created article</h5>
                     <div class="card-body p-6 bg-white">
-                        <h5 class="card-title">Особое обращение с заголовком</h5>
-                            <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к дополнительному контенту.</p>
-                            <a href="#" class="btn btn-primary">Edit</a>
-                            <a href="#" class="btn btn-danger">Delete</a>
+                        @if (session('status'))
+                            <div class="alert alert-success">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form method="Posr" action="{{ route('store-post') }}">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Title</label>
+                                <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="title">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Text</label>
+                                <textarea class="form-control" name="text" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </form>
                     </div>
         </div>
     </div>

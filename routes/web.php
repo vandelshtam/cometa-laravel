@@ -17,10 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [\App\Http\Controllers\PostController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
-Route::view('/created-new-article', view('created-article'))->name('created-new-article');
+Route::get('/created-post', [\App\Http\Controllers\PostController::class, 'create'])->name('created-post');
+Route::get('/store-post', [\App\Http\Controllers\PostController::class, 'store'])->name('store-post');
 
 require __DIR__.'/auth.php';

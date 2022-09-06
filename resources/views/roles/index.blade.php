@@ -21,15 +21,14 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <a href="{{ route('created-post') }}"  class="btn btn-success mt-3 mb-3">Created article</a> 
-            @foreach ($posts as $post)
-                <h5 class="card-header">{{ $post->name }}</h5>
+            <a href="{{ route('created-post') }}"  class="btn btn-success mt-3 mb-3">Add new roles</a> 
+            @foreach ($roles as $role)
+                <h5 class="card-header">{{ $role->name }}</h5>
                     <div class="card-body p-6 bg-white mb-4">
-                        <h5 class="card-title">post content</h5>
-                            <p class="card-text">{{ $post->text }}</p>
-                            <p class="card-text">{{ $post->created_at }}</p>
-                            <a href="{{ route('edit-post', $post->id) }}" class="btn btn-primary">Edit</a>
-                            <form action="{{ route('delete-post', $post->id) }}" method="POST" style="display: inline-block">
+                        <h5 class="card-title">name role</h5>
+                            <p class="card-text">{{ $role->name }}</p>
+                            <a href="{{ route('edit-post', $role->id) }}" class="btn btn-primary">Edit</a>
+                            <form action="{{ route('delete-post', $role->id) }}" method="POST" style="display: inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -41,4 +40,3 @@
         </div>
     </div>
 </x-app-layout>
-

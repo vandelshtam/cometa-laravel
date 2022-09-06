@@ -17,7 +17,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             {{-- <a href="{{ route('created-article') }}"  class="btn btn-success mt-3 mb-3">Created article</a>     --}}
-                <h5 class="card-header">Created article</h5>
+                <h5 class="card-header">Edited article</h5>
                     <div class="card-body p-6 bg-white">
                         @if (session('status'))
                             <div class="alert alert-success">
@@ -33,15 +33,16 @@
                                 </ul>
                             </div>
                         @endif
-                        <form method="Post" action="{{ route('store-post') }}">
+                        <form method="Post" action="{{ route('update-post', $post->id) }}">
                             @csrf
+                            @method('PUT')
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Title</label>
-                                <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="title">
+                                <input type="text" name="name" value="{{ $post->name }}" class="form-control" id="exampleFormControlInput1" placeholder="title">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlTextarea1" class="form-label">Text</label>
-                                <textarea class="form-control" name="text" id="exampleFormControlTextarea1" placeholder="you text" rows="3"></textarea>
+                                <textarea class="form-control" name="text"  id="exampleFormControlTextarea1"  rows="3">{{ $post->text }}</textarea>
                             </div>
                             <button type="submit" class="btn btn-success">Submit</button>
                         </form>

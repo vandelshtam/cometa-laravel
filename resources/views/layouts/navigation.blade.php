@@ -16,11 +16,18 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.index')">
-                        Roles
-                    </x-nav-link>
-                </div>
+                @role('super-user')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('roles.index')" :active="request()->routeIs('roles.index')">
+                            Roles
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+                            Users
+                        </x-nav-link>
+                    </div>
+                @endrole
             </div>
 
             <!-- Settings Dropdown -->

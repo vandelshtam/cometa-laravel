@@ -21,30 +21,26 @@
                     {{ session('status') }}
                 </div>
             @endif
-            @if(auth()->user()->can('add posts'))
-                <a href="{{ route('created-post') }}"  class="btn btn-success mt-3 mb-3">Created article</a> 
-            @endif
-            @if(auth()->user()->can('show posts'))
-            @foreach ($posts as $post)
-                <h5 class="card-header">{{ $post->name }}</h5>
+            <a href="{{ route('users.create') }}"  class="btn btn-success mt-3 mb-3">Add new users</a> 
+            @foreach ($users as $user)
+                <h5 class="card-header">{{ $user->name }}</h5>
                     <div class="card-body p-6 bg-white mb-4">
-                        <h5 class="card-title">post content</h5>
-                            <p class="card-text">{{ $post->text }}</p>
-                            <p class="card-text">{{ $post->created_at }}</p>
-                            @if(auth()->user()->can('edit posts'))
-                            <a href="{{ route('edit-post', $post->id) }}" class="btn btn-primary">Edit</a>
-                            @endif
-                            @if(auth()->user()->can('delete posts'))
-                            <form action="{{ route('delete-post', $post->id) }}" method="POST" style="display: inline-block">
+                        <h5 class="card-title">name user</h5>
+                            <p class="card-text">Role: 
+                                @foreach ($user->roles as $role)
+                                     {{ $role['name'] }}</p>
+                                @endforeach  
+                            <p class="card-text">{{ $user->name }}</p>
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
+                            <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display: inline-block">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            @endif
+                            
                     </div>
             @endforeach   
-            @endif    
+                
         </div>
     </div>
 </x-app-layout>
-

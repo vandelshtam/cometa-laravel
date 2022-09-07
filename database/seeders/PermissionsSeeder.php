@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class PermissionsSeeder extends Seeder
 {
@@ -14,6 +15,9 @@ class PermissionsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Permission::create(['name'=>'show posts']);
+        Permission::create(['name'=>'add posts']);
+        Permission::create(['name'=>'edit posts']);
+        Permission::create(['name'=>'delete posts']);
     }
 }

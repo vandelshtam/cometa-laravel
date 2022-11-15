@@ -16,6 +16,8 @@
     <body>
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
+            <div id="notification" class="alert mx-3 invisible"></div>
+                @yield('content')
         </div>
     </body>
 </html>

@@ -27,6 +27,8 @@
             <!-- Page Content -->
             <main>
                 {{ $slot }}
+                <div id="notification" class="alert mx-3 invisible"></div>
+                @yield('content')
             </main>
         </div>
     </body>
